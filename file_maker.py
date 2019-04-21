@@ -11,8 +11,8 @@ def write_csv(matrix):
 
 
 def data_maker():
-    # n = random.randint(500, 1000)
-    # m = random.randint(10, 50)
+    n = random.randint(500, 1000)
+    m = random.randint(10, 50)
     n = 20
     m = 10
     vectors_array = numpy.random.uniform(-1, 1, (n, m))
