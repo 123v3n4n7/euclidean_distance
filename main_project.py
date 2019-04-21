@@ -18,20 +18,17 @@ def csv_reader():
 def euclidean_distance(vector_array):
     mx = vector_array
     distances = []
-    t = []
+    couples = []
     for i in range(len(mx)):
         for j in range(i+1, len(mx)):
             distances.append(distance.euclidean(mx[i], mx[j]))
-            t.append([i, j])
+            couples.append([i, j])
     max_dist = max(distances)
     min_dist = min(distances)
-    para_min = t[distances.index(min(distances))][0], t[distances.index(min(distances))][1]
-    para_max = t[distances.index(max(distances))][0], t[distances.index(max(distances))][1]
-    # print(para_min, para_max)
-    #print(distance.euclidean(mx[para_min[0]], mx[para_min[1]]))
-    # print(distance.euclidean(mx[para_max[0]], mx[para_max[1]]))
+    couple_min = couples[distances.index(min(distances))][0], couples[distances.index(min(distances))][1]
+    couple_max = couples[distances.index(max(distances))][0], couples[distances.index(max(distances))][1]
     hist_maker(distances)
-    return (max_dist, para_max), (min_dist, para_min)
+    return (max_dist, couple_max), (min_dist, couple_min)
 
 
 def hist_maker(mx):
@@ -47,10 +44,13 @@ def hist_maker(mx):
     plt.hist(mx, bins=bins, color='red')
     plt.show()
     #plt.savefig('graph.svg')
-    #print(max(mx))
 
 
-if __name__ == "__main__":
+def main():
     matrix = csv_reader()
     max_distance, min_distance = euclidean_distance(matrix)
     print(max_distance, min_distance)
+
+
+if __name__ == "__main__":
+    main()
